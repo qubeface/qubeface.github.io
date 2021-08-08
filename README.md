@@ -6,7 +6,7 @@
 -->
 
 # QubeFace JS
-Create 3D cubes for website content easily with QubeFace JS.
+## Create 3D cubes easily!
 QubeFace is a JavaScript library that helps to create easily CSS 3D cubes for forms, images or other web content.
 
 GitHub:
