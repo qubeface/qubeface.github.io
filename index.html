@@ -1,20 +1,183 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>QubeFace JS</title>
+<title>QubeFace JS - 3D cubes</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="QubeFace is a free JavaScript library to create easily CSS 3D cubes for forms, images or other web content.">
+<meta name="keywords" content="3D cube, QubeFace, QubeStar, swipe cube, JavaScript cube, CSS cube, cube JS, website cube, web content cube">
+<meta name="author" content="I. Hedrich">
+
+<script src="js/qubeface.min.js"></script>
+<script src="js/qubestar.min.js"></script>
+<link rel="stylesheet" href="main.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  TODO remove this library and use instead of "fa fa-bars"-Font-Icon an simple svg logo! -->
 </head>
 <body>
-<h1>QubeFace</h2>
 
-<div>
-QubeFace is a JavaScript library that helps to create easily CSS 3D cubes for forms, images or other web content.
+<!-- navigation bar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-l3 w3-left-align">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-l3" href="javascript:void(0);" onclick="openNav()" onmouseover="navbarsMouseover()" onmouseout="navbarsMouseout()">
+	<svg id="navbarlogo" style="width:22px;height:22px;margin-bottom:-5px;"
+		 width="720.000000pt" height="720.000000pt" viewBox="0 0 720.000000 720.000000"
+		 preserveAspectRatio="xMidYMid meet">
+		<g id="navbarlogo_group" transform="translate(0.000000,720.000000) scale(0.100000,-0.100000)" 
+		fill="#ffffff" stroke="none">
+		<path d="M800 5994 c-63 -19 -114 -65 -144 -129 -26 -54 -26 -55 -26 -324 0
+		-183 4 -286 12 -317 16 -59 67 -118 126 -147 l47 -22 2700 0 2700 0 45 22 c62
+		29 97 64 120 119 18 42 20 69 20 325 0 328 -5 355 -76 418 -88 77 168 71
+		-2811 70 -2244 -1 -2675 -3 -2713 -15z"/>
+		<path d="M830 4070 c-58 -11 -98 -31 -137 -72 -56 -58 -63 -100 -63 -406 0
+		-273 0 -273 26 -328 33 -71 93 -117 171 -133 74 -15 5359 -11 5411 4 17 6 54
+		29 81 52 77 66 81 89 81 422 0 256 -2 283 -20 325 -22 53 -57 88 -115 120
+		l-40 21 -2675 1 c-1471 1 -2695 -2 -2720 -6z"/>
+		<path d="M764 2120 c-61 -35 -107 -87 -123 -139 -7 -25 -11 -137 -11 -316 0
+		-275 0 -278 25 -326 30 -61 65 -95 130 -125 l50 -24 2675 0 c3022 0 2731 -8
+		2819 81 68 67 71 86 71 408 0 252 -2 284 -19 324 -25 58 -78 108 -138 130 -45
+		16 -212 17 -2738 17 l-2690 0 -51 -30z"/>
+		</g>
+	</svg>
+	<script>
+		function navbarsMouseover() {
+			var nbl = document.getElementById("navbarlogo_group");
+			nbl.setAttribute("fill", "#000000");
+		}
+		function navbarsMouseout() {
+			var nbl = document.getElementById("navbarlogo_group");
+			nbl.setAttribute("fill", "#ffffff");
+		}
+	</script>
+  </a>
+  <a href="#" class="w3-bar-item qf-green" style="text-decoration:none;cursor:default;">QubeFace.JS</a>
+  <a href="https://qubeface.codepen.io/api" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-right">API</a>
+  <a href="https://github.com/qubeface/qubeface" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-right" target="_blank">GitHub</a>
+  <a href="https://codepen.io/qubeface" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-right">Examples</a>
+  <a href="https://github.com/qubeface/qubeface/blob/main/README.md" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-right">Docs</a>
+ </div>
+
+  <!-- navigation bar on small screens -->
+  <div id="navMobile" class="w3-bar-block w3-theme-l3 w3-hide w3-hide-large w3-hide-medium">
+    <a href="https://github.com/qubeface/qubeface/blob/main/README.md" class="w3-bar-item w3-button">Docs</a>
+    <a href="https://codepen.io/qubeface" class="w3-bar-item w3-button">Examples</a>
+	<a href="https://github.com/qubeface/qubeface" class="w3-bar-item w3-button" target="_blank">GitHub</a>
+    <a href="https://qubeface.codepen.io/api" class="w3-bar-item w3-button">API</a>
+  </div>
 </div>
 
-GitHub:
-<p><a href="https://github.com/qubeface/qubeface">https://github.com/qubeface/qubeface</a></p>
+<div class="w3-container w3-padding-64 w3-center">
+  <h1 class="gfMainTitle">QubeFace JS</h1>
 
+  <!-- QubeFace container -->
+  <div style="margin-bottom:275px;">
+    <div id="myQube1"></div>
+  </div>
+  
+  <script>
+  
+	var faceContent = '<div class="faceContent"><img src="img/qubeface_logo.png" alt="QubeFace Logo" width="246" height="230" draggable="false"/></div>';
 
+	// QubeFace definition
+	var qube1 = new QubeFace({
+		id: "myQube1", 
+		sizePx: 250, 
+		spinDurationSeconds: 0.7,
+		backgroundColor: "rgba(255, 255, 255, 0.9)",
+		front: faceContent,
+		back: faceContent,
+		top: faceContent,
+		bottom: faceContent,
+		right: faceContent,
+		left: faceContent
+	});
+	
+	// QubeFace initialization
+	qube1.init();
+	qube1.enableSwipe();
+	qube1.autoSpinY(20);
+	
+  </script>
+ 
+  <h3 class="qfH3">Create 3D cubes easily!</h3>
+  <p>QubeFace is a free JavaScript library to create easily CSS 3D cubes for forms, images or other web content.
+  <br/>This library uses the MIT license and has no other dependencies.</p>
+  <button id="btnDownloadQubeface" class="btnDownload" onclick="window.open('https://raw.githubusercontent.com/qubeface/qubeface/main/qubeface.min.js', '_blank');">
+  <b>qubeface.min.js</b><br/>Free JS library</button>
+  
+  <hr style="padding:10px 0 0 0;"/>
+  
+  <h2 class="gfMainTitle">QubeStar / QubeControl</h2>
+  
+  <div style="display:inline-block;margin:0 auto 0 auto;">
+	  <!-- QubeControl container -->
+	  <div style="touch-action:none;">
+		<div id="myQube2"></div>
+	  </div>
+  </div>
+   
+  <script>
+  
+	// QubeControl and QubeStar
+	var qube2 = new QubeControl({
+		id: "myQube2", 
+		sizePx: 150, 
+		spinDurationSeconds: 0.4, 
+		backgroundColor: "rgba(85, 158, 132, 0.3)", 
+		items: [
+		    {itemId:1, content: "1"},
+			{itemId:2, content: "2"},
+			{itemId:3, content: "3"},
+			{itemId:4, content: "4"},
+			{itemId:5, content: "5"},
+			{itemId:6, content: "6"},
+			{itemId:7, content: "7"},
+			{itemId:8, content: "8", ifUpThenIndex:0, ifDownThenIndex:0, ifRightThenIndex:0, ifLeftThenIndex:0}
+		],
+		perspectivePx: 600,
+		endElementContent: '✓'
+	});
+	
+	var qubeStar = new QubeStar({
+	    qubeControl: qube2,
+		boardSizePx: 280,
+		arrowHeightPercent: 40,
+		arrowWidthPercent: 40,
+		arrowTranslate: 54,
+		upLabel: "",
+		downLabel: "",
+		leftLabel: "",
+		rightLabel: "",
+		arrowColor: "rgba(85, 158, 132, 0.8)",
+		arrowFocusColor: "rgba(85, 158, 132, 1)",
+		isPagingMode: false
+	});
 
+  </script>
+  
+  <h3 class="qfH3">Spin and swipe your cubes!</h3>
+  <p>QubeStar is a free JavaScript library to optimally spin and swipe your 3D cube. The QubeStar library contains QubeControl and QubeItem. QubeControl and QubeItem's are for paging over items with spinning and swiping gesture.
+  <br/>This library uses the MIT license and just needs qubestar.js, but has no other dependencies.</p>
+  <button id="btnDownloadQubestar" class="btnDownload" onclick="window.open('https://raw.githubusercontent.com/qubeface/qubeface/main/qubestar.min.js', '_blank');">
+  <b>qubestar.min.js</b><br/>Free JS library</button>
+
+  <hr/>
+
+  <div id="footerPart" style="font-size:12px;">Libraries released under MIT license. Copyright © 2021 I. Hedrich</div>
+</div>
+
+<script>
+
+// used to toggle the menu on smaller screens (mobile screens) when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navMobile");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+</script>
 
 </body>
 </html>
