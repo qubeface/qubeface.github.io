@@ -152,7 +152,7 @@
 
   <hr/>
 
-  <div id="footerPart" style="font-size:12px;">Libraries released under MIT license. Copyright © 2021 I. Hedrich</div>
+  <div id="footerPart" style="font-size:12px;">Libraries released under MIT license. Copyright © <span id="copyright_year">****</span> I. Hedrich</div>
 </div>
 
 <script>
@@ -166,7 +166,14 @@ function openNav() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
+	
+function initPage() {
+  // set year of copyright dynamically
+  document.getElementById("copyright_year").innerHTML = new Date().getFullYear(); 
+}
 
+initPage();
+	
 </script>
 
 </body>
