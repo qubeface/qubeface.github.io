@@ -265,7 +265,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .gfMainTitle{font-weight:bold;color:#999999;}
 .qfH3{opacity:0.3;font-weight:bold;font-size:20px;margin-top:20px;}
 
-.btnDownload{border:none;cursor:pointer;text-align:center;width:220px;height:120px;background-color:#999999;color:white;font-size:20px;}
+.btnDownload{border:none;cursor:pointer;text-align:center;width:220px;height:120px;background-color:#aaaaaa;color:white;font-size:20px;}
 .btnDownload:hover{opacity:0.7;}
 .btnDownload:active{background-color:#333333;}
 .btnDownload:focus{outline:2px solid #000000;}
